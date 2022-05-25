@@ -46,7 +46,7 @@ def singleModality_cv_10(X,y,embedding_num,support_num,query_num,filter_threshol
             pre_y, prob_y = pn.predict(X_test)
 
 
-            cur_acc.append(accuracy_score(pre_y, y_test))
+            cur_acc.append(accuracy_score(y_test,pre_y))
             cur_auc.append(roc_auc_score(y_test, prob_y))
             cur_f1.append(f1_score(y_test, pre_y))
 
@@ -105,7 +105,7 @@ def multiModality_cv_10(X1, X2, y, feature_num, embedding_num,
             acmp.fit(X1_train, X2_train, y_train, optimer, criterion, 100)
             pre_y, prob_y = acmp.predict(X1_test)
 
-            cur_acc.append(accuracy_score(pre_y, y_test))
+            cur_acc.append(accuracy_score(y_test,pre_y))
             cur_auc.append(roc_auc_score(y_test, prob_y))
             cur_f1.append(f1_score(y_test, pre_y))
 
@@ -196,7 +196,7 @@ def PNTripletloss_cv_10(X,y,embedding_dim,support_num,query_num,l,margin,filter_
             pn.fit(X_train, y_train, pn_optimer, pn_criterion, EPOCH=100)
             pre_y, prob_y = pn.predict(X_test)
 
-            cur_acc.append(accuracy_score(pre_y, y_test))
+            cur_acc.append(accuracy_score(y_test,pre_y))
             cur_auc.append(roc_auc_score(y_test, prob_y))
             cur_f1.append(f1_score(y_test, pre_y))
 
