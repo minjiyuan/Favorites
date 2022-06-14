@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 from sklearn.model_selection import cross_validate, train_test_split, KFold
 from sklearn.preprocessing import StandardScaler
 from torch import optim
@@ -34,7 +35,7 @@ def miv(model, X):
         cur_X_1 = torch.tensor(cur_X_1, dtype=torch.float)
         cur_X_2 = torch.tensor(cur_X_2, dtype=torch.float)
 
-        cur_diff = torch.sum(model.embedding(cur_X_1) - model.embedding(cur_X_2), dim=1)
+        cur_diff = F.pairwise_distance(model.embedding(cur_X_1), model.embedding(cur_X_2), p=2)
 
         miv[i] = torch.mean(torch.abs(cur_diff), dim=0)
 
