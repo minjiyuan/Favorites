@@ -34,8 +34,7 @@ def miv(model, X):
         cur_X_1 = torch.tensor(cur_X_1, dtype=torch.float)
         cur_X_2 = torch.tensor(cur_X_2, dtype=torch.float)
 
-        cur_diff = torch.mean(model.embedding(cur_X_1) - model.embedding(cur_X_2), dim=1)
-
+        cur_diff = torch.sum(model.embedding(cur_X_1) - model.embedding(cur_X_2), dim=1)
 
         miv[i] = torch.mean(torch.abs(cur_diff), dim=0)
 
